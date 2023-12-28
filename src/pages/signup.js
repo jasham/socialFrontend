@@ -3,32 +3,25 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-export default function Login() {
+export default function SignUp() {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const handleSignUp = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3002/api/v1/login", {
+      .post("http://localhost:3002/api/v1/signup", {
         email: username,
         password: password,
       })
       .then((res) => {
-        console.log("Here is resp", res);
-        if (res.data.user.roleId === 1) {
-          router.push("/adminPage");
-        } else {
-          router.push("/feeds");
-        }
+        alert("SignUp successful");
+        router.push("/");
       })
       .catch((err) => {
-        alert(err.response.data.message);
+        alert("Issue in signUp try again");
       });
-    // Perform validation or authentication here
-    // For demonstration, just redirect to a different page on login
-    // router.push("/dashboard"); // Replace '/dashboard' with the actual dashboard route
   };
 
   return (
@@ -42,8 +35,8 @@ export default function Login() {
         gap: 10,
       }}
     >
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
+      <h1>SignUp</h1>
+      <form onSubmit={handleSignUp}>
         <div>
           <label>
             Username:
