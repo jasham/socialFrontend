@@ -22,7 +22,14 @@ const SocialAuthService = () => {
         gap: 10,
       }}
     >
-      <Link href="https://www.facebook.com/v13.0/dialog/oauth?client_id=720243843501638&redirect_uri=http://localhost:3002/auth/facebook/callback&scope=user_posts,user_photos,user_likes,email">
+      <Link
+        href={{
+          pathname: `http://localhost:3002/auth/facebook`,
+          query: {
+            uId: "123345", // should be `title` not `id`
+          },
+        }}
+      >
         Click me to link FB
       </Link>
       <button type="button" onClick={() => click("fb")}>
